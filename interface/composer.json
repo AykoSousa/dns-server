@@ -1,0 +1,20 @@
+{
+    "name": "ayko_nascimento/interface",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Controllers\\": "src/controllers/",
+            "App\\Models\\": "src/models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ayko Nascimento",
+            "email": "ayko.souza74@gmail.com"
+        }
+    ],
+    "require": {
+        "flightphp/core": "^3.15",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
