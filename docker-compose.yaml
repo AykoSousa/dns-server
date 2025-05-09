@@ -1,0 +1,31 @@
+services:
+  dns_server:
+    image: python:3.12
+    container_name: dns_server
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      # - "54:53/udp"
+      # - "54:53/tcp"
+      - "53:53/udp"
+      - "53:53/tcp"
+    command: sh -c "./scripts/setup.sh && ./scripts/tests.sh && ./scripts/run.sh"
+    networks:
+      - dns_server_network
+  
+  dns_server_interface:
+    image: php:8.2-cli
+    container_name: dns_server_interface
+    volumes:
+      - ./interface:/app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    command: sh -c "php -S 0.0.0.0:8000"
+    networks:
+      - dns_server_network
+
+networks:
+  dns_server_network:
+    driver: bridge
